@@ -1,11 +1,13 @@
 import { useState, useEffect, useCallback } from 'react'
 import { GithubIcon, LinkedinIcon, MenuIcon, CloseIcon } from './icons'
+import clsx from 'clsx'
 
 const navLinks = [
   { label: 'Bosh sahifa', href: '#home' },
   { label: 'Men haqimda', href: '#about' },
   { label: 'Texnologiyalar', href: '#skills' },
   { label: 'Loyihalar', href: '#projects' },
+  { label: 'Tajriba', href: '#experience' },
   { label: 'Aloqa', href: '#contact' },
 ]
 
@@ -70,19 +72,19 @@ export default function Navbar() {
         role="banner"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'glass-strong border-b border-white/[0.08] shadow-[0_4px_24px_rgba(0,0,0,0.3)]'
+            ? 'glass-strong border-b border-[rgba(255,255,255,0.08)] shadow-[0_4px_24px_rgba(0,0,0,0.3)]'
             : 'bg-transparent border-b border-transparent'
         }`}
       >
         <nav
-          className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between"
+          className={clsx('max-w-6xl', 'mx-auto', 'px-6', 'h-16', 'flex', 'items-center', 'justify-between')}
           aria-label="Main navigation"
         >
           {/* Logo */}
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, '#home')}
-            className="font-heading font-semibold text-white text-lg tracking-tight hover:opacity-80 transition-opacity focus-visible:rounded"
+            className={clsx('font-heading', 'font-semibold', 'text-white', 'text-lg', 'tracking-tight', 'hover:opacity-80', 'transition-opacity', 'focus-visible:rounded')}
             aria-label="Asilbek Hasanov - Back to top"
           >
             Asilbek
@@ -90,7 +92,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop nav links */}
-          <ul className="hidden md:flex items-center gap-8" role="list">
+          <ul className={clsx('hidden', 'md:flex', 'items-center', 'gap-8')} role="list">
             {navLinks.map(({ label, href }) => {
               const id = href.replace('#', '')
               const isActive = activeSection === id
@@ -114,12 +116,12 @@ export default function Navbar() {
           </ul>
 
           {/* Right: social + mobile hamburger */}
-          <div className="flex items-center gap-3">
+          <div className={clsx('flex', 'items-center', 'gap-3')}>
             <a
-              href="https://github.com/dashboard"
+              href="https://github.com/asilbek120213031404-beep"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex items-center justify-center w-9 h-9 rounded-lg text-slate-400 hover:text-white hover:bg-white/[0.06] transition-all duration-200"
+              className={clsx('hidden', 'md:flex', 'items-center', 'justify-center', 'w-9', 'h-9', 'rounded-lg', 'text-slate-400', 'hover:text-white', 'hover:border-[rgba(255,255,255,0.06)]', 'transition-all', 'duration-200')}
               aria-label="GitHub profile"
             >
               <GithubIcon size={17} />
@@ -128,7 +130,7 @@ export default function Navbar() {
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:flex items-center justify-center w-9 h-9 rounded-lg text-slate-400 hover:text-white hover:bg-white/[0.06] transition-all duration-200"
+              className={clsx('hidden', 'md:flex', 'items-center', 'justify-center', 'w-9', 'h-9', 'rounded-lg', 'text-slate-400', 'hover:text-white', 'hover:border-[rgba(255,255,255,0.06)]', 'transition-all', 'duration-200')}
               aria-label="LinkedIn profile"
             >
               <LinkedinIcon size={17} />
@@ -137,7 +139,7 @@ export default function Navbar() {
             {/* Mobile menu button */}
             <button
               type="button"
-              className="md:hidden flex items-center justify-center w-9 h-9 rounded-lg text-slate-400 hover:text-white hover:bg-white/[0.06] transition-all duration-200"
+              className={clsx('md:hidden', 'flex', 'items-center', 'justify-center', 'w-9', 'h-9', 'rounded-lg', 'text-slate-400', 'hover:text-white', 'hover:border-[rgba(255,255,255,0.06)]', 'transition-all', 'duration-200')}
               onClick={() => setMenuOpen((v) => !v)}
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
@@ -161,7 +163,7 @@ export default function Navbar() {
         }`}
         style={{ background: 'rgba(5, 8, 22, 0.97)', backdropFilter: 'blur(20px)' }}
       >
-        <ul className="flex flex-col px-6 pt-8 gap-1" role="list">
+        <ul className={clsx('flex', 'flex-col', 'px-6', 'pt-8', 'gap-1')} role="list">
           {navLinks.map(({ label, href }, i) => (
             <li
               key={href}
@@ -174,9 +176,9 @@ export default function Navbar() {
               <a
                 href={href}
                 onClick={(e) => handleNavClick(e, href)}
-                className="flex items-center py-4 text-xl font-medium text-slate-300 hover:text-white border-b border-white/[0.05] transition-colors"
+                className={clsx('flex', 'items-center', 'py-4', 'text-xl', 'font-medium', 'text-slate-300', 'hover:text-white', 'border-b', 'border-[rgba(255,255,255,0.05)]', 'transition-colors')}
               >
-                <span className="code-font text-xs text-[#63b3ed] mr-4 opacity-60">
+                <span className={clsx('code-font', 'text-xs', 'text-[#63b3ed]', 'mr-4', 'opacity-60')}>
                   0{i + 1}
                 </span>
                 {label}
@@ -185,12 +187,12 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="flex gap-4 px-6 mt-8">
+        <div className={clsx('flex', 'gap-4', 'px-6', 'mt-8')}>
           <a
-            href="https://github.com/dashboard"
+            href="https://github.com/asilbek120213031404-beep"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
+            className={clsx('flex', 'items-center', 'gap-2', 'text-slate-400', 'hover:text-white', 'transition-colors')}
             aria-label="GitHub"
           >
             <GithubIcon size={18} />
@@ -200,7 +202,7 @@ export default function Navbar() {
             href="https://linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
+            className={clsx('flex', 'items-center', 'gap-2', 'text-slate-400', 'hover:text-white', 'transition-colors')}
             aria-label="LinkedIn"
           >
             <LinkedinIcon size={18} />

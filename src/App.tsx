@@ -8,11 +8,11 @@ import Projects from './components/Projects'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
 import clsx from 'clsx'
-// import Footer from './components/Footer'
+import Footer from './components/Footer'
 
 export default function App() {
   return (
-    <div className={clsx('relative', 'min-h-screen', 'bg-[#050816]', 'text-white', 'overflow-x-hidden')}>
+    <div className={clsx('relative', 'min-h-screen', 'bg-[#050816]', 'text-[#ffffff]', 'overflow-x-hidden')}>
       {/* Animated background */}
       <Background />
 
@@ -39,7 +39,7 @@ export default function App() {
         <Contact />
       </main>
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   )
 }

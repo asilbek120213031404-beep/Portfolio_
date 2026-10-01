@@ -39,8 +39,8 @@ const contactLinks = [
   },
   {
     label: 'GitHub',
-    value: 'github.com/dashboard',
-    href: 'https://github.com/dashboard',
+    value: 'github.com/asilbek120213031404-beep',
+    href: 'https://github.com/asilbek120213031404-beep',
     icon: GithubIcon,
     description: 'Open source',
   },
@@ -63,6 +63,7 @@ export default function Contact() {
   const [form, setForm] = useState<FormState>({ name: '', email: '', message: '' })
   const [errors, setErrors] = useState<FormErrors>({})
   const [touched, setTouched] = useState<Record<string, boolean>>({})
+  const [submitted, setSubmitted] = useState(false)
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -89,10 +90,11 @@ export default function Contact() {
     setErrors(newErrors)
 
     if (Object.keys(newErrors).length === 0) {
-      // Redirect to email — no fake backend
+      setSubmitted(true)
       const subject = encodeURIComponent(`Portfolio inquiry from ${form.name}`)
       const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)
       window.location.href = `mailto:mrasilbek3@gmail.com?subject=${subject}&body=${body}`
+      setTimeout(() => setSubmitted(false), 5000)
     }
   }
 
@@ -110,12 +112,12 @@ export default function Contact() {
       <div className={clsx('max-w-6xl', 'mx-auto', 'px-6')}>
         {/* Header */}
         <div className="mb-14">
-          <p className={clsx('section-label', 'mb-3')}>CONTACT</p>
+          <p className={clsx('section-label', 'mb-3')}>ALOQA</p>
           <h2
             id="contact-heading"
             className={clsx('font-heading', 'text-3xl', 'md:text-4xl', 'font-bold', 'text-white')}
           >
-            Let's build something useful.
+            Birgalikda foydali loyihalar yarataylik.
           </h2>
           <p className={clsx('text-slate-500', 'text-sm', 'mt-2', 'max-w-md')}>
             Yangi loyiha, hamkorlik yoki shunchaki suhbatlashish uchun bog'lanishingiz mumkin.
@@ -131,9 +133,9 @@ export default function Contact() {
                 href={href}
                 target={href.startsWith('mailto') ? undefined : '_blank'}
                 rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                className={clsx('flex', 'items-center', 'gap-4', 'p-4', 'glass', 'rounded-xl', 'border', 'border-white/[0.07]', 'hover:border-white/[0.13]', 'hover:bg-white/[0.03]', 'transition-all', 'duration-200', 'group')}
+                className={clsx('flex', 'items-center', 'gap-4', 'p-4', 'glass', 'rounded-xl', 'border', 'border-white/[0.07]', 'hover:border-white/[0.15]', 'transition-all', 'duration-200', 'group')}
               >
-                <div className={clsx('w-9', 'h-9', 'rounded-lg', 'bg-[#63b3ed]/[0.08]', 'flex', 'items-center', 'justify-center', 'text-[#63b3ed]', 'shrink-0')}>
+                <div className={clsx('w-9', 'h-9', 'rounded-lg', 'bg-sky-400/10', 'flex', 'items-center', 'justify-center', 'text-[#63b3ed]', 'shrink-0')}>
                   <Icon size={16} />
                 </div>
                 <div className={clsx('flex-1', 'min-w-0')}>
@@ -148,10 +150,16 @@ export default function Contact() {
           </div>
 
           {/* Right: Form */}
-          <div className={clsx('glass', 'rounded-2xl', 'border', 'border-white/[0.08]', 'p-6')}>
+          <div className={clsx('glass', 'rounded-2xl', 'border', 'border-[rgba(255,255,255,0.08)]', 'p-6')}>
             <p className={clsx('text-slate-400', 'text-sm', 'mb-5')}>
               Yoki to'g'ridan-to'g'ri xabar yuboring — email orqali yo'naltiriladi.
             </p>
+
+            {submitted && (
+              <div className="mb-4 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs">
+                Rahmat! Xabaringiz yozildi va pochtangiz ochilmoqda...
+              </div>
+            )}
 
             <form onSubmit={handleSubmit} noValidate className="space-y-4">
               {/* Name */}
@@ -230,10 +238,10 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className={clsx('group', 'w-full', 'flex', 'items-center', 'justify-center', 'gap-2', 'px-5', 'py-3', 'bg-[#63b3ed]', 'hover:bg-[#4da3de]', 'text-[#050816]', 'font-semibold', 'text-sm', 'rounded-xl', 'transition-all', 'duration-200', 'hover:shadow-[0_0_20px_rgba(99,179,237,0.25)]')}
+                className={clsx('group', 'w-full', 'flex', 'items-center', 'justify-center', 'gap-2', 'px-5', 'py-3', 'bg-[#63b3ed]', 'hover:bg-[#4da3de]', 'text-slate-950', 'font-semibold', 'text-sm', 'rounded-xl', 'transition-all', 'duration-200', 'hover:shadow-[0_0_20px_rgba(99,179,237,0.25)]')}
               >
                 <Send size={14} className={clsx('group-hover:translate-x-0.5', 'transition-transform')} />
-                Send a Message
+                Xabar yuborish
               </button>
             </form>
           </div>
@@ -242,3 +250,4 @@ export default function Contact() {
     </section>
   )
 }
+
